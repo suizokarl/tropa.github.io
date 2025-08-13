@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iinom Ba Tayo?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffebf0;
+        }
+        .popup {
+            position: fixed;
+            background: white;
+            border: 2px solid #ff4f7b;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+            z-index: 9999;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .yes-btn {
+            background-color: #4caf50;
+            color: white;
+        }
+        .no-btn {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    let size = 200; // initial popup size
+
+    function createPopup(message) {
+        let popup = document.createElement("div");
+        popup.className = "popup";
+        popup.style.width = size + "px";
+        popup.style.height = "auto";
+        popup.innerHTML = `<p>${message}</p>`;
+
+        let yesBtn = document.createElement("button");
+        yesBtn.className = "yes-btn";
+        yesBtn.textContent = "Yes";
+        yesBtn.onclick = () => {
+            document.body.removeChild(popup);
+            createPopup("okiee, otw");
+        };
+
+        let noBtn = document.createElement("button");
+        noBtn.className = "no-btn";
+        noBtn.textContent = "No";
+        noBtn.onclick = () => {
+            document.body.removeChild(popup);
+            size += 50; // make popup bigger
+            createPopupAtRandom("Iinom ba tayo ngayon?");
+        };
+
+        popup.appendChild(yesBtn);
+        popup.appendChild(noBtn);
+        document.body.appendChild(popup);
+
+        // center popup
+        popup.style.left = (window.innerWidth - popup.offsetWidth) / 2 + "px";
+        popup.style.top = (window.innerHeight - popup.offsetHeight) / 2 + "px";
+    }
+
+    function createPopupAtRandom(message) {
+        let popup = document.createElement("div");
+        popup.className = "popup";
+        popup.style.width = size + "px";
+        popup.style.height = "auto";
+        popup.innerHTML = `<p>${message}</p>`;
+
+        let yesBtn = document.createElement("button");
+        yesBtn.className = "yes-btn";
+        yesBtn.textContent = "Yes";
+        yesBtn.onclick = () => {
+            document.body.removeChild(popup);
+            createPopup("okiee, otw");
+        };
+
+        let noBtn = document.createElement("button");
+        noBtn.className = "no-btn";
+        noBtn.textContent = "No";
+        noBtn.onclick = () => {
+            document.body.removeChild(popup);
+            size += 50;
+            createPopupAtRandom("Iinom ba tayo ngayon?");
+        };
+
+        popup.appendChild(yesBtn);
+        popup.appendChild(noBtn);
+        document.body.appendChild(popup);
+
+        // random position
+        popup.style.left = Math.random() * (window.innerWidth - size) + "px";
+        popup.style.top = Math.random() * (window.innerHeight - 100) + "px";
+    }
+
+    // initial popup
+    createPopup("Iinom ba tayo ngayon?");
+</script>
+
+</body>
+</html>
